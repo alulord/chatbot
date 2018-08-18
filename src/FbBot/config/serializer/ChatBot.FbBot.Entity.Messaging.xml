@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<serializer>
+    <class name="ChatBot\FbBot\Entity\Messaging" exclusion-policy="ALL" access-type="public_method">
+
+        <property name="sender"
+                  expose="true"
+                  skip-when-empty="false"
+                  type="ChatBot\FbBot\Entity\Sender"
+                  serialized-name="sender"
+                  inline="true"/>
+        <property name="recipient"
+                  expose="true"
+                  skip-when-empty="false"
+                  type="ChatBot\FbBot\Entity\Recipient"
+                  serialized-name="recipient"
+        />
+        <property name="timestamp" expose="true" skip-when-empty="false" type="integer" serialized-name="timestamp"/>
+        <property name="message"
+                  expose="true"
+                  skip-when-empty="false"
+                  type="ChatBot\FbBot\Entity\Message"
+                  serialized-name="message"/>
+
+    </class>
+</serializer>

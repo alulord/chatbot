@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<serializer>
+    <class name="ChatBot\FbBot\Entity\Recipient" exclusion-policy="ALL" access-type="public_method">
+
+        <property name="id" expose="true" skip-when-empty="false" type="string" serialized-name="id"/>
+    </class>
+</serializer>

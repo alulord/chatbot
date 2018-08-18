@@ -1,0 +1,41 @@
+{
+  "object": "page",
+  "entry": [
+    {
+      "id": "538226666620380",
+      "time": 1534607023336,
+      "messaging": [
+        {
+          "sender": {
+            "id": "1942519759172744"
+          },
+          "recipient": {
+            "id": "538226666620380"
+          },
+          "timestamp": 1534607022338,
+          "message": {
+            "mid": "LYb6w5PaM5uovX3mZSMC3si68T450078LUHuaNFNdc0PGtH7vrTQMV6BaWGVftdmrjaCFbi-g0K_0Fhy-XIkCw",
+            "seq": 110066,
+            "text": "hi bye",
+            "nlp": {
+              "entities": {
+                "bye": [
+                  {
+                    "confidence": 0.98290628195892,
+                    "value": "true"
+                  }
+                ],
+                "greetings": [
+                  {
+                    "confidence": 0.99952387809104,
+                    "value": "true"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

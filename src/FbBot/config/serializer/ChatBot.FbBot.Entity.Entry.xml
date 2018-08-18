@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<serializer>
+    <class name="ChatBot\FbBot\Entity\Entry" exclusion-policy="ALL" access-type="public_method">
+
+        <property name="id"
+                  expose="true"
+                  skip-when-empty="false"
+                  type="string"
+                  serialized-name="id"
+        >
+        </property>
+        <property name="time" expose="true" skip-when-empty="false" type="integer" serialized-name="time"/>
+        <property name="messaging" expose="true" serialized-name="messaging" skip-when-empty="false">
+            <type><![CDATA[array<ChatBot\FbBot\Entity\Messaging>]]></type>
+        </property>
+    </class>
+</serializer>
