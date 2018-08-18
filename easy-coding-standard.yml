@@ -1,0 +1,15 @@
+imports:
+    - { resource: 'vendor/symplify/easy-coding-standard/config/php71.yml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/common/namespaces.yml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/common/control-structures.yml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/common/strict.yml' }
+    - { resource: 'vendor/symplify/easy-coding-standard/config/clean-code.yml' }
+
+services:
+    # if ("result" === $value)
+    PhpCsFixer\Fixer\ControlStructure\YodaStyleFixer:
+        equal: true
+        identical: true
+        less_and_greater: false
+    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
+        traversableTypeHints: []
