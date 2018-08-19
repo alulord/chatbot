@@ -27,6 +27,8 @@ use ChatBot\FbBot\Provider\NlpProviderInterface;
 class NlpHandler
 {
 
+    public const NO_NLP_MESSAGE = 'I\'m really sorry, but I didn\' understand your request. Can you rephrase it for me please?';
+
     /**
      * @var NlpProviderInterface[]
      */
@@ -57,7 +59,7 @@ class NlpHandler
             $replies[] = $this->providers[$entityName]->handleEntity($entity);
         }
         if (empty($replies)) {
-            $replies[] = 'I\'m really sorry, but I didn\' understand your request. Can you rephrase it for me please?';
+            $replies[] = self::NO_NLP_MESSAGE;
         }
 
         return $replies;

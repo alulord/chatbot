@@ -62,7 +62,7 @@ class FbClient
      *
      * @return ResponseInterface
      */
-    public function reply(FbReply $reply): ResponseInterface
+    public function sendReply(FbReply $reply): ResponseInterface
     {
         $serializedReply = $this->serializer->serialize($reply, 'json');
         $requestData = [

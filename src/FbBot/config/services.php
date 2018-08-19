@@ -28,6 +28,7 @@ return [
     'ChatBot\FbBot\Provider\*NlpProviderInterface' => DI\create('ChatBot\FbBot\Provider\*NlpProvider'),
     'nlp.providers' => [
         'greetings' => \DI\create(\ChatBot\FbBot\Provider\GreetingsNlpProvider::class),
+        'bye' => \DI\create(\ChatBot\FbBot\Provider\ByeNlpProvider::class),
     ],
     NlpHandler::class => DI\create()
         ->method('setProviders', \DI\get('nlp.providers')),

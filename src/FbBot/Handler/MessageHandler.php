@@ -63,11 +63,14 @@ class MessageHandler
     public function handleMessage(Entry $entry): void
     {
         foreach ($entry->getMessaging() as $messaging) {
+            if (null === $messaging->getMessage()) {
+                continue;
+            }
             $replies = $this->nlpHandler->handleNlp($messaging);
             $recipient = $messaging->getSender();
             $reply = $this->createReply($recipient, $replies);
 
-            $this->client->reply($reply);
+            $this->client->sendReply($reply);
 //            We can save message Id's
 //            $response = json_decode($response->getBody()->getContents());
         }
