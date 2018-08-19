@@ -18,11 +18,11 @@ namespace ChatBot\FbBot\Provider;
  * Interface NlpProviderInterface
  * To activate new provider, just add as service for nlp.providers e.g.:
  *     'nlp.providers' => [
-            'greetings' => \DI\create(Provider\GreetingsNlpProvider::class),
-            'bye' => \DI\create(Provider\ByeNlpProvider::class),
-            'product_query product' => \DI\create(Provider\ProductQueryNlpProvider::class),
-            'reminder' => \DI\create(Provider\ReminderNlpProvider::class),
-            ],
+ *          'greetings' => \DI\create(Provider\GreetingsNlpProvider::class),
+ *          'bye' => \DI\create(Provider\ByeNlpProvider::class),
+ *          'product_query product' => \DI\create(Provider\ProductQueryNlpProvider::class),
+ *          'reminder' => \DI\create(Provider\ReminderNlpProvider::class),
+ *     ],
  *
  * @package ChatBot\FbBot\Provider
  */

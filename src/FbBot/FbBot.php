@@ -169,25 +169,5 @@ class FbBot
         }
 
         return $attributes[$parameter->getName()];
-//        if (true === $this->isAttributeParameter($attribute)) {
-//
-//        }
     }
-
-//    /**
-//     * @TODO do we need this?
-//     *
-//     * @param string $attribute
-//     *
-//     * @return bool
-//     */
-//    private function isAttributeParameter(string $attribute): bool
-//    {
-//        if (true === strpos($attribute, '%', strlen($attribute) - 1)
-//            && true === strpos($attribute, '%')) {
-//            return true;
-//        }
-//
-//        return false;
-//    }
 }

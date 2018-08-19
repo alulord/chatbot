@@ -44,8 +44,8 @@ class VerifyController extends AbstractController
         if (false === $request->query->has('hub_challenge')) {
             throw new \LogicException('You must send challenge');
         }
-        $challenge = $request->query->get('hub_challenge');
-        $hubVerifyToken = $request->query->get('hub_verify_token');
+        $challenge = $request->query->get('hub_challenge', '');
+        $hubVerifyToken = $request->query->get('hub_verify_token', '');
         $verifyToken = $this->container->get('%verify_token%');
         if ($hubVerifyToken !== $verifyToken) {
             throw new InvalidArgumentException('Bad verification token');

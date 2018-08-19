@@ -26,7 +26,7 @@ use Psr\Http\Message\ResponseInterface;
  *
  * @author Peter Simoncic <peter.simoncic@smeonline.sk>
  */
-class FbClient
+class FbClient implements ClientInterface
 {
     /**
      * @var Client

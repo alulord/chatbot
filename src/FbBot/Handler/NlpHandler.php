@@ -54,6 +54,7 @@ class NlpHandler
         $providers = $this->getBestMatchingProvider($entityNames);
         $message = self::NO_NLP_MESSAGE;
 
+        // we get the first one working
         foreach ($providers as $provider) {
             try {
                 return $provider->handleEntities($messaging->getMessage()->getNlp()->getEntities());

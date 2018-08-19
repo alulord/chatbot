@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace ChatBot\FbBot\Handler;
 
-use ChatBot\FbBot\Client\FbClient;
+use ChatBot\FbBot\Client\ClientInterface;
 use ChatBot\FbBot\Entity\Entry;
 use ChatBot\FbBot\Entity\FbReply;
 use ChatBot\FbBot\Entity\FbUserInterface;
@@ -41,16 +41,16 @@ class MessageHandler
     private $appToken;
 
     /**
-     * @var FbClient
+     * @var ClientInterface
      */
     private $client;
 
     /**
-     * @param NlpHandler $nlpHandler
-     * @param FbClient   $client
-     * @param string     $appToken
+     * @param NlpHandler      $nlpHandler
+     * @param ClientInterface $client
+     * @param string          $appToken
      */
-    public function __construct(NlpHandler $nlpHandler, FbClient $client, string $appToken)
+    public function __construct(NlpHandler $nlpHandler, ClientInterface $client, string $appToken)
     {
         $this->nlpHandler = $nlpHandler;
         $this->client = $client;
@@ -77,7 +77,7 @@ class MessageHandler
 
     /**
      * @param FbUserInterface $recipient
-     * @param string          $replies
+     * @param string          $replyMsg
      *
      * @return FbReply
      */
