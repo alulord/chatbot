@@ -11,5 +11,10 @@ services:
         equal: true
         identical: true
         less_and_greater: false
-    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
-        traversableTypeHints: []
+#    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
+#        traversableTypeHints: []
+
+parameters:
+    skip:
+        SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff.MissingTraversableReturnTypeHintSpecification: ~
+        SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff.MissingTraversableParameterTypeHintSpecification: ~
