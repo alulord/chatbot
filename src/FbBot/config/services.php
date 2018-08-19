@@ -12,6 +12,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+use ChatBot\FbBot\Client\ClientInterface;
 use ChatBot\FbBot\Client\FbClient;
 use ChatBot\FbBot\Controller\MessageController;
 use ChatBot\FbBot\Handler\MessageHandler;
@@ -35,7 +36,7 @@ return [
     ],
     NlpHandler::class => DI\create()
         ->method('setProviders', \DI\get('nlp.providers')),
-    FbClient::class => DI\autowire()
+    ClientInterface::class => DI\autowire(FbClient::class)
         ->constructorParameter('serializer', \DI\get('serializer'))
         ->constructorParameter('messagingUrl', \DI\get('%messaging_url%')),
     MessageHandler::class => DI\autowire()
