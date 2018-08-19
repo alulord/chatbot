@@ -21,9 +21,9 @@ use ChatBot\FbBot\Provider;
 use JMS\Serializer\SerializerBuilder;
 
 return [
-    '%verify_token%' => 'ThisIsMySecretChatBotToken',
+    '%verify_token%' => DI\env('CHATBOT_SECRET_TOKEN'),
+    '%app_token%' => DI\env('CHATBOT_APP_TOKEN'),
     '%messaging_url%' => 'https://graph.facebook.com/v2.6/me/messages',
-    '%app_token%' => 'EAAhvDfeUh2kBAI3IGxeOqbqwCAZBeEDBQ5dcBs5EQxRL2JOLGZBSzvsSRZC3WeCC4JQI1ZAJzQzHTcLROCyN1wAtmUpjPkRjyFf3l6auXi8d4SU7GVKQ6BLwyyNJLiETEEay5qeOhelGwDI1eTkt5GIjQ4t4WyRy6DVT6tjMAwZDZD',
     'serializer' => function () {
         return SerializerBuilder::create()->addMetadataDir(__DIR__.'/serializer/')->build();
     },
