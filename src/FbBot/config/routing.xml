@@ -7,6 +7,9 @@
     <route id="verification" path="/" methods="GET">
         <default key="_controller">\ChatBot\FbBot\Controller\VerifyController::verifyAction</default>
     </route>
+    <route id="policies" path="/policies">
+        <default key="_controller">\ChatBot\FbBot\Controller\VerifyController::policiesAction</default>
+    </route>
     <route id="message" path="/" methods="POST">
         <default key="_controller">ChatBot\FbBot\Controller\MessageController::replyAction</default>
     </route>

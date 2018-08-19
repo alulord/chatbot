@@ -35,11 +35,11 @@ class ByeNlpProvider implements NlpProviderInterface
     ];
 
     /**
-     * @param array $entity
+     * @param array $entities
      *
      * @return string
      */
-    public function handleEntity(array $entity): string
+    public function handleEntities(array $entities): string
     {
         return $this->replies[array_rand($this->replies)];
     }

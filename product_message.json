@@ -1,0 +1,44 @@
+{
+  "object": "page",
+  "entry": [
+    {
+      "id": "538226666620380",
+      "time": 1534693038736,
+      "messaging": [
+        {
+          "sender": {
+            "id": "1942519759172744"
+          },
+          "recipient": {
+            "id": "538226666620380"
+          },
+          "timestamp": 1534693013674,
+          "message": {
+            "mid": "OqtqwWyYgp0TtMXop-HUW8i68T450078LUHuaNFNdc22rK4-naLu2fbzIsQ3yGyx7u3--W_izDz9W5Zk7EEgug",
+            "seq": 113310,
+            "text": "how much is chair?",
+            "nlp": {
+              "entities": {
+                "product_query": [
+                  {
+                    "confidence": 1,
+                    "value": "How much",
+                    "type": "value"
+                  }
+                ],
+                "product": [
+                  {
+                    "suggested": true,
+                    "confidence": 0.53685502578492,
+                    "value": "chair",
+                    "type": "value"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

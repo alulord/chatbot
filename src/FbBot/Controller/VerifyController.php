@@ -53,4 +53,29 @@ class VerifyController extends AbstractController
 
         return new Response($challenge);
     }
+
+    /**
+     * This is here just because fb check if policies page is working
+     *
+     * @return Response
+     */
+    public function policiesAction(): Response
+    {
+        $content = <<<'TAG'
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+
+</body>
+</html> 
+TAG;
+
+        return new Response($content);
+    }
 }

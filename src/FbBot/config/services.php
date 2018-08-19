@@ -16,6 +16,7 @@ use ChatBot\FbBot\Client\FbClient;
 use ChatBot\FbBot\Controller\MessageController;
 use ChatBot\FbBot\Handler\MessageHandler;
 use ChatBot\FbBot\Handler\NlpHandler;
+use ChatBot\FbBot\Provider;
 use JMS\Serializer\SerializerBuilder;
 
 return [
@@ -27,8 +28,10 @@ return [
     },
     'ChatBot\FbBot\Provider\*NlpProviderInterface' => DI\create('ChatBot\FbBot\Provider\*NlpProvider'),
     'nlp.providers' => [
-        'greetings' => \DI\create(\ChatBot\FbBot\Provider\GreetingsNlpProvider::class),
-        'bye' => \DI\create(\ChatBot\FbBot\Provider\ByeNlpProvider::class),
+        'greetings' => \DI\create(Provider\GreetingsNlpProvider::class),
+        'bye' => \DI\create(Provider\ByeNlpProvider::class),
+        'product_query product' => \DI\create(Provider\ProductQueryNlpProvider::class),
+        'reminder' => \DI\create(Provider\ReminderNlpProvider::class),
     ],
     NlpHandler::class => DI\create()
         ->method('setProviders', \DI\get('nlp.providers')),

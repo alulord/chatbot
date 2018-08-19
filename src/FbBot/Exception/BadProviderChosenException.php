@@ -15,12 +15,12 @@ declare(strict_types=1);
 namespace ChatBot\FbBot\Exception;
 
 /**
- * Class ParseException
+ * Class BadProviderChosenException
  *
  * @package ChatBot\FbBot\Exception
  *
  * @author Peter Simoncic <peter.simoncic@smeonline.sk>
  */
-class ParseException extends \RuntimeException
+class BadProviderChosenException extends \LogicException
 {
 }

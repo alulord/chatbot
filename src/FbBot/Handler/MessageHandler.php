@@ -66,9 +66,8 @@ class MessageHandler
             if (null === $messaging->getMessage()) {
                 continue;
             }
-            $replies = $this->nlpHandler->handleNlp($messaging);
-            $recipient = $messaging->getSender();
-            $reply = $this->createReply($recipient, $replies);
+            $replyMsg = $this->nlpHandler->handleNlp($messaging);
+            $reply = $this->createReply($messaging->getSender(), $replyMsg);
 
             $this->client->sendReply($reply);
 //            We can save message Id's
@@ -78,15 +77,15 @@ class MessageHandler
 
     /**
      * @param FbUserInterface $recipient
-     * @param array           $replies
+     * @param string          $replies
      *
      * @return FbReply
      */
-    private function createReply(FbUserInterface $recipient, array $replies): FbReply
+    private function createReply(FbUserInterface $recipient, string $replyMsg): FbReply
     {
         $reply = new FbReply();
         $replyMessage = new Message();
-        $replyMessage->setText(rtrim(implode(' ', $replies)));
+        $replyMessage->setText($replyMsg);
         $reply->setRecipient($recipient);
         $reply->setMessage($replyMessage);
         $reply->setAccessToken($this->appToken);
