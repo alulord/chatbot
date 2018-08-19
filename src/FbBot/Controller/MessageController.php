@@ -1,13 +1,22 @@
 <?php
 declare(strict_types=1);
 
+/**
+ * PHP version 7.1.17
+ * This file is part of ChatBot project.
+ *
+ * @author  Peter Simoncic <alulord@gmail.com>
+ * @license GNU AGPLv3
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace ChatBot\FbBot\Controller;
 
-use ChatBot\FbBot\Entity\Entry;
 use ChatBot\FbBot\Entity\FbObject;
-use ChatBot\FbBot\Entity\Messaging;
-use ChatBot\FbBot\Provider\ProviderInterface;
-use JMS\Serializer\SerializerBuilder;
+use ChatBot\FbBot\Handler\MessageHandler;
+use JMS\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,6 +31,35 @@ class MessageController extends AbstractController
 {
 
     /**
+     * @var Serializer
+     */
+    private $serializer;
+
+    /**
+     * @var MessageHandler
+     */
+    private $messageHandler;
+
+    /**
+     * @param Serializer $serializer
+     */
+    public function setSerializer(Serializer $serializer): void
+    {
+        $this->serializer = $serializer;
+    }
+
+    /**
+     * @param MessageHandler $messageHandler
+     */
+    public function setMessageHandler(MessageHandler $messageHandler): void
+    {
+        $this->messageHandler = $messageHandler;
+    }
+
+    /**
+     * There is a thing on facebook, when you don't return status code 200 for some time,
+     * it will unsubscribe your webhook without letting you know. So we return some response
+     *
      * @param Request $request
      *
      * @return Response
@@ -31,10 +69,10 @@ class MessageController extends AbstractController
         $fbObject = $this->deserializeRequest($request);
 
         foreach ($fbObject->getEntry() as $entry) {
-            $this->handleMessage($entry);
+            $this->messageHandler->handleMessage($entry);
         }
 
-        return new Response('test');
+        return new Response();
     }
 
     /**
@@ -44,45 +82,6 @@ class MessageController extends AbstractController
      */
     private function deserializeRequest(Request $request): FbObject
     {
-        $serializer = SerializerBuilder::create()->addMetadataDir(__DIR__.'/config/serializer/')->build();
-
-        return $serializer->deserialize($request->getContent(), FbObject::class, 'json');
+        return $this->serializer->deserialize($request->getContent(), FbObject::class, 'json');
     }
-
-    /**
-     * @param Entry $entry
-     *
-     * @return array
-     */
-    private function handleMessage(Entry $entry): array
-    {
-        $replies = [];
-        foreach ($entry->getMessaging() as $messaging) {
-            $messaging->getRecipient()->getId();
-            $messaging->getSender()->getId();
-            $this->handleNlp($messaging);
-        }
-
-        return $replies;
-    }
-
-    /**
-     * @TODO maybe do some array caching for providers
-     *
-     * @param Messaging $messaging
-     */
-    private function handleNlp(Messaging $messaging): void
-    {
-        foreach ($messaging->getMessage()->getNlp()->getEntities() as $entityName => $entity) {
-            $providerFQCN = 'ChatBot\\FbBot\\Provider\\'.ucfirst($entityName).'Provider';
-            if (false === class_exists($providerFQCN)) {
-                /* Maybe we want to log this? */
-                continue;
-            }
-            /** @var ProviderInterface $provider */
-            $provider = new $providerFQCN();
-            $provider->handleEntity($entity);
-        }
-    }
-
 }

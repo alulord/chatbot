@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<serializer>
+    <class name="ChatBot\FbBot\Entity\FbReply" exclusion-policy="ALL" access-type="public_method">
+
+        <property name="recipient"
+                  expose="true"
+                  skip-when-empty="false"
+                  type="ChatBot\FbBot\Entity\Recipient"
+                  serialized-name="recipient"
+        />
+        <property name="message"
+                  expose="true"
+                  skip-when-empty="false"
+                  type="ChatBot\FbBot\Entity\Message"
+                  serialized-name="message"/>
+        <property name="accesToken" expose="false" skip-when-empty="false" type="string"
+                  serialized-name="access_token"/>
+    </class>
+</serializer>

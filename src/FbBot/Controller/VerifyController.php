@@ -1,8 +1,21 @@
 <?php
 declare(strict_types=1);
 
+/**
+ * PHP version 7.1.17
+ * This file is part of ChatBot project.
+ *
+ * @author  Peter Simoncic <alulord@gmail.com>
+ * @license GNU AGPLv3
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace ChatBot\FbBot\Controller;
 
+use DI\DependencyException;
+use DI\NotFoundException;
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,9 +34,9 @@ class VerifyController extends AbstractController
      *
      * @param Request $request
      *
+     * @throws DependencyException
+     * @throws NotFoundException
      * @return Response
-     * @throws \DI\DependencyException
-     * @throws \DI\NotFoundException
      */
     public function verifyAction(Request $request): Response
     {
@@ -40,5 +53,4 @@ class VerifyController extends AbstractController
 
         return new Response($challenge);
     }
-
 }

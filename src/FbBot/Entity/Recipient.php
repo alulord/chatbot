@@ -14,7 +14,14 @@ declare(strict_types=1);
 
 namespace ChatBot\FbBot\Entity;
 
-class Recipient
+/**
+ * Class Recipient
+ *
+ * @package ChatBot\FbBot\Entity
+ *
+ * @author Peter Simoncic <peter.simoncic@smeonline.sk>
+ */
+class Recipient implements FbUserInterface
 {
     /**
      * @var string

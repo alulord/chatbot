@@ -18,7 +18,7 @@
         <property name="message"
                   expose="true"
                   skip-when-empty="false"
-                  type="ChatBot\FbBot\Entity\Message"
+                  type="ChatBot\FbBot\Entity\FbRequestMessage"
                   serialized-name="message"/>
 
     </class>

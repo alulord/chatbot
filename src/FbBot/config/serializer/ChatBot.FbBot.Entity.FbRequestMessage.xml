@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<serializer>
+    <class name="ChatBot\FbBot\Entity\FbRequestMessage" exclusion-policy="ALL" access-type="public_method">
+
+        <property name="mid" expose="true" skip-when-empty="false" type="string" serialized-name="mid"/>
+        <property name="text" expose="true" skip-when-empty="false" type="string" serialized-name="text"/>
+        <property name="seq" expose="true" skip-when-empty="false" type="integer" serialized-name="seq"/>
+        <property name="nlp" expose="true" skip-when-empty="false" type="ChatBot\FbBot\Entity\Nlp"
+                  serialized-name="nlp"/>
+    </class>
+</serializer>

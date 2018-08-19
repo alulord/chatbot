@@ -15,22 +15,18 @@ declare(strict_types=1);
 namespace ChatBot\FbBot\Provider;
 
 /**
- * Class GreetingsProvider
+ * Interface NlpProviderInterface
  *
  * @package ChatBot\FbBot\Provider
- *
- * @author Peter Simoncic <peter.simoncic@smeonline.sk>
  */
-class GreetingsProvider implements ProviderInterface
+interface NlpProviderInterface
 {
-//
-//    public function getNlpEntityName(): string
-//    {
-//        return 'greetings';
-//    }
+//    public function getNlpEntityName(): string;
 
-    public function handleEntity(array $entity): void
-    {
-        dump($entity);
-    }
+    /**
+     * @param array $entity
+     *
+     * @return string
+     */
+    public function handleEntity(array $entity): string;
 }

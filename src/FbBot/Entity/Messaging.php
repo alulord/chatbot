@@ -33,7 +33,7 @@ class Messaging
     private $timestamp;
 
     /**
-     * @var Message
+     * @var FbRequestMessage
      */
     private $message;
 
@@ -98,19 +98,19 @@ class Messaging
     }
 
     /**
-     * @return Message
+     * @return FbRequestMessage
      */
-    public function getMessage(): Message
+    public function getMessage(): FbRequestMessage
     {
         return $this->message;
     }
 
     /**
-     * @param Message $message
+     * @param FbRequestMessage $message
      *
      * @return Messaging
      */
-    public function setMessage(Message $message): self
+    public function setMessage(FbRequestMessage $message): self
     {
         $this->message = $message;
 

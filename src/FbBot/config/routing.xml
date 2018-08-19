@@ -8,6 +8,6 @@
         <default key="_controller">\ChatBot\FbBot\Controller\VerifyController::verifyAction</default>
     </route>
     <route id="message" path="/" methods="POST">
-        <default key="_controller">\ChatBot\FbBot\Controller\MessageController::replyAction</default>
+        <default key="_controller">ChatBot\FbBot\Controller\MessageController::replyAction</default>
     </route>
 </routes>

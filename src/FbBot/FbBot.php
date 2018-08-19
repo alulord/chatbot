@@ -17,6 +17,7 @@ namespace ChatBot\FbBot;
 use ChatBot\FbBot\Controller\AbstractController;
 use DI\Container;
 use DI\ContainerBuilder;
+use DI\Definition\Reference;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,8 +43,8 @@ class FbBot
     /**
      * @param Request $request
      *
-     * @return Response
      * @throws \ReflectionException
+     * @return Response
      */
     public function handleRequest(Request $request): Response
     {
@@ -77,7 +78,7 @@ class FbBot
         if (!isset($attributes['_controller'])) {
             throw new \LogicException('Route definition must have parameter "_controller" set');
         }
-        if (false === strpos($attributes['_controller'], '::')) {
+        if (false === mb_strpos($attributes['_controller'], '::')) {
             throw new \LogicException(
                 'Route "_controller" definition must be in form "Controller\FQCN::controllerAction"'
             );
@@ -110,8 +111,8 @@ class FbBot
      * @param AbstractController $controller
      * @param array              $attributes
      *
-     * @return array
      * @throws \ReflectionException
+     * @return array
      */
     private function getControllerMethodParameters(AbstractController $controller, array $attributes): array
     {
@@ -120,7 +121,7 @@ class FbBot
         $parameters = [];
         foreach ($methodParameters as $parameter) {
             if ($parameter->hasType()) {
-                $parameters[$parameter->getName()] = $this->wireService($parameter);
+                $parameters[$parameter->getName()] = $this->getServiceDefinition($parameter)->resolve($this->container);
                 continue;
             }
             $parameters[$parameter->getName()] = $this->wireAttribute($parameter, $attributes);
@@ -141,19 +142,18 @@ class FbBot
 
         $context = new RequestContext();
         $context->fromRequest($request);
+
         return new UrlMatcher($routes, $context);
     }
 
     /**
      * @param \ReflectionParameter $parameter
      *
-     * @return array
+     * @return Reference
      */
-    private function wireService(\ReflectionParameter $parameter): array
+    private function getServiceDefinition(\ReflectionParameter $parameter): Reference
     {
-        return \DI\get($parameter->getType()->getName())->resolve(
-            $this->container
-        );
+        return \DI\get($parameter->getType()->getName());
     }
 
     /**
@@ -167,6 +167,7 @@ class FbBot
         if (!isset($attributes[$parameter->getName()])) {
             throw new \UnexpectedValueException('You must provide attribute in you routing');
         }
+
         return $attributes[$parameter->getName()];
 //        if (true === $this->isAttributeParameter($attribute)) {
 //

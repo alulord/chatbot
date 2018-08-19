@@ -12,11 +12,19 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace ChatBot\FbBot\Provider;
+namespace ChatBot\FbBot\Entity;
 
-interface ProviderInterface
+/**
+ * Interface FbUserInterface
+ *
+ * @package ChatBot\FbBot\Entity
+ */
+interface FbUserInterface
 {
-//    public function getNlpEntityName(): string;
 
-    public function handleEntity(array $entity): void;
+    /**
+     *
+     * @return string
+     */
+    public function getId(): string;
 }
