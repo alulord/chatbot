@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace ChatBot\FbBot\Provider;
 
+use ChatBot\FbBot\Exception\BadProviderChosenException;
+
 /**
  * Class ReminderNlpProvider
  *
@@ -34,6 +36,14 @@ class ReminderNlpProvider implements NlpProviderInterface
      */
     public function handleEntities(array $entities): string
     {
+        foreach ($entities as $entityName => $entity) {
+            if ('reminder' === $entityName || 'datetime' === $entityName) {
+                continue;
+            }
+            if ((float) $entity[0]['confidence'] > 0.9) {
+                throw new BadProviderChosenException();
+            }
+        }
         $reminders = array_map(
             function ($reminder) {
                 return $reminder['value'];
@@ -42,6 +52,7 @@ class ReminderNlpProvider implements NlpProviderInterface
         );
 
         $message = sprintf(self::REMINDER_REPLY_TEMPLATE, implode('", "', $reminders));
+
         return $this->addDate($entities, $message);
     }
 
